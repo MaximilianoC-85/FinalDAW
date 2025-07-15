@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Buscaminas</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="contenedor-principal">
+        <header class="encabezado-contacto">
+            <h1>Contacto</h1>
+            <button class="boton-tema" id="botonTema">Modo Oscuro</button>
+            <a href="index.html" class="enlace-volver">Volver al Juego</a>
+        </header>
+
+        <main class="area-contacto">
+            <form id="formularioContacto" class="formulario-contacto">
+                <div class="grupo-formulario">
+                    <label for="nombreContacto">Nombre:</label>
+                    <input type="text" id="nombreContacto" name="nombreContacto" required>
+                    <p id="errorNombreContacto" class="mensaje-error"></p>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="emailContacto">Email:</label>
+                    <input type="email" id="emailContacto" name="emailContacto" required>
+                    <p id="errorEmailContacto" class="mensaje-error"></p>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="mensajeContacto">Mensaje:</label>
+                    <textarea id="mensajeContacto" name="mensajeContacto" rows="5" required></textarea>
+                    <p id="errorMensajeContacto" class="mensaje-error"></p>
+                </div>
+                <button type="submit" class="boton-enviar">Enviar Mensaje</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Cargar scripts en el orden correcto para mantener el tema -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

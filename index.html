@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="contenedor-principal">
+        <header class="encabezado-juego">
+            <div class="contador-minas" id="contadorMinas">000</div>
+            <button class="boton-reiniciar" id="botonReiniciar"><img src="assets/dead-stroke-rounded.svg"
+                    alt="Dead Face"></button>
+            <div class="temporizador" id="temporizador">00:00</div>
+        </header>
+
+        <main class="area-juego">
+            <div class="tablero-juego" id="tableroJuego">
+                <!-- El tablero se generará dinámicamente con JavaScript aquí -->
+            </div>
+        </main>
+
+        <footer class="footer-juego">
+            <button class="boton-tema" id="botonTema">Modo Oscuro</button>
+            <button class="boton-dificultad" id="botonDificultad">Dificultad</button>
+            <button class="boton-ranking" id="botonRanking">Ranking</button>
+            <a href="contact.html" class="enlace-contacto">Contacto</a>
+            <a href="https://github.com/tu-usuario/tu-repositorio" target="_blank" class="enlace-github">GitHub</a>
+        </footer>
+    </div>
+
+    <!-- Modales -->
+    <div id="modalNombreJugador" class="modal" style="display: none;">
+        <div class="contenido-modal">
+            <h2>Ingresa tu nombre</h2>
+            <input type="text" id="inputNombreJugador" placeholder="Mínimo 3 letras">
+            <button id="botonIniciarPartida">Iniciar Partida</button>
+            <p id="errorNombre" class="mensaje-error"></p>
+        </div>
+    </div>
+
+    <div id="modalDificultad" class="modal" style="display: none;">
+        <div class="contenido-modal">
+            <h2>Selecciona Dificultad</h2>
+            <button class="boton-opcion-dificultad" data-dificultad="facil">Fácil (8x8, 10 minas)</button>
+            <button class="boton-opcion-dificultad" data-dificultad="medio">Medio (12x12, 25 minas)</button>
+            <button class="boton-opcion-dificultad" data-dificultad="dificil">Difícil (16x16, 40 minas)</button>
+            <button class="cerrar-modal" id="cerrarModalDificultad">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modalFinJuego" class="modal" style="display: none;">
+        <div class="contenido-modal">
+            <h2 id="mensajeFinJuego"></h2>
+            <button class="cerrar-modal" id="cerrarModalFinJuego">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modalRanking" class="modal" style="display: none;">
+        <div class="contenido-modal">
+            <h2>Ranking de Partidas</h2>
+            <div class="controles-ranking">
+                <button id="ordenarPorPuntaje">Ordenar por Puntaje</button>
+                <button id="ordenarPorFecha">Ordenar por Fecha</button>
+            </div>
+            <ul id="listaRanking">
+                <!-- Los elementos del ranking se insertarán aquí -->
+            </ul>
+            <button class="cerrar-modal" id="cerrarModalRanking">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Cargar scripts en el orden correcto -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+# Ignorar archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de IDE
+.vscode/
+.idea/
+
+# Ignorar dependencias de Node.js (si se usaran en el futuro, aunque ES5 no las requiere por defecto)
+node_modules/
+
+# Ignorar archivos de log
+*.log
+npm-debug.log*
+
+# Ignorar archivos temporales
+*.tmp
+*.bak
+*~
+
+# Ignorar archivos de caché
+.cache/
