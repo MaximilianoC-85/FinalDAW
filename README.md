@@ -80,7 +80,7 @@ Este proyecto no es solo un juego funcional, sino que incorpora una serie de car
 📁 Estructura del Proyecto
 
 El proyecto sigue una estructura de carpetas clara y organizada:
-
+```plaintext
 minesweeper/
 ├── index.html            // Página principal del juego
 ├── contact.html          // Página del formulario de contacto
@@ -97,6 +97,7 @@ minesweeper/
 │   └── images/           // Recursos gráficos (ej. cara feliz)
 ├── .gitignore            // Archivo para control de versiones
 └── README.md             // Documentación del proyecto
+
 
 🚀 Cómo Probarlo
 
