@@ -1,10 +1,10 @@
 Presentación del Proyecto Final: Buscaminas
 
 ¡Hola a todos! Hoy les presento mi proyecto final de "Desarrollo y Arquitecturas Web": una implementación completa del clásico juego Buscaminas.
-🎯 El Objetivo del Juego
+ El Objetivo del Juego
 
 El Buscaminas es un desafío de lógica y deducción. La meta es despejar un tablero lleno de celdas, algunas con minas ocultas, sin detonar ninguna. Cada celda revelada sin mina muestra un número que indica cuántas minas hay en las celdas vecinas. Con esta información, el jugador debe identificar las celdas seguras y marcar las minas con banderas.
-✨ Características Destacadas
+ Características Destacadas
 
 Este proyecto no es solo un juego funcional, sino que incorpora una serie de características clave y buenas prácticas de desarrollo:
 🎮 Funcionalidad de Juego Completa
