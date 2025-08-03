@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,71 +10,77 @@
 </head>
 
 <body>
-    <div class="contenedor-principal">
-        <header class="encabezado-juego">
-            <div class="contador-minas" id="contadorMinas">000</div>
-            <button class="boton-reiniciar" id="botonReiniciar"><img src="assets/images/dead-stroke-rounded.svg"
-                    alt="Dead Face"></button>
-            <div class="temporizador" id="temporizador">00:00</div>
+    <div class="main-container">
+        <header class="game-header">
+            <div class="mines-counter" id="minesCounter">000</div>
+            <button class="restart-button" id="restartButton"><img src="assets/images/dead-stroke-rounded.svg"
+                    alt="Cara Muerta"></button>
+            <div class="timer" id="timer">00:00</div>
         </header>
 
-        <main class="area-juego">
-            <div class="tablero-juego" id="tableroJuego">
-                <!-- El tablero se generará dinámicamente con JavaScript aquí -->
+        <main class="game-area">
+            <div class="board-scroll">
+                <div class="game-board" id="gameBoard">
+                    <!-- El tablero se generará dinámicamente con JavaScript aquí -->
+                </div>
             </div>
         </main>
 
-        <footer class="footer-juego">
-            <button class="boton-tema" id="botonTema">Modo Oscuro</button>
-            <button class="boton-dificultad" id="botonDificultad">Dificultad</button>
-            <button class="boton-ranking" id="botonRanking">Ranking</button>
-            <a href="contact.html" class="enlace-contacto">Contacto</a>
-            <a href="https://github.com/MaximilianoC-85/FinalDAW" target="_blank" class="enlace-github">GitHub</a>
+        <footer class="game-footer">
+            <button class="theme-button" id="themeButton">Modo Oscuro</button>
+            <button class="difficulty-button" id="difficultyButton">Dificultad</button>
+            <button class="ranking-button" id="rankingButton">Ranking</button>
+            <a href="contact.html" class="contact-link">Contacto</a>
         </footer>
     </div>
 
-    <!-- Modales -->
-    <div id="modalNombreJugador" class="modal" style="display: none;">
-        <div class="contenido-modal">
-            <h2>Ingresa tu nombre</h2>
-            <input type="text" id="inputNombreJugador" placeholder="Mínimo 3 letras">
-            <button id="botonIniciarPartida">Iniciar Partida</button>
-            <p id="errorNombre" class="mensaje-error"></p>
-        </div>
-    </div>
-
-    <div id="modalDificultad" class="modal" style="display: none;">
-        <div class="contenido-modal">
-            <h2>Selecciona Dificultad</h2>
-            <button class="boton-opcion-dificultad" data-dificultad="facil">Fácil (8x8, 10 minas)</button>
-            <button class="boton-opcion-dificultad" data-dificultad="medio">Medio (12x12, 25 minas)</button>
-            <button class="boton-opcion-dificultad" data-dificultad="dificil">Difícil (16x16, 40 minas)</button>
-            <button class="cerrar-modal" id="cerrarModalDificultad">Cerrar</button>
-        </div>
-    </div>
-
-    <div id="modalFinJuego" class="modal" style="display: none;">
-        <div class="contenido-modal">
-            <h2 id="mensajeFinJuego"></h2>
-            <button class="cerrar-modal" id="cerrarModalFinJuego">Cerrar</button>
-        </div>
-    </div>
-
-    <div id="modalRanking" class="modal" style="display: none;">
-        <div class="contenido-modal">
-            <h2>Ranking de Partidas</h2>
-            <div class="controles-ranking">
-                <button id="ordenarPorPuntaje">Ordenar por Puntaje</button>
-                <button id="ordenarPorFecha">Ordenar por Fecha</button>
+    <!-- Modals -->
+    <div id="playerNameModal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h2>Ingresa tu Nombre</h2>
+            <div class="form-group">
+                <label for="playerNameInput">Nombre:</label>
+                <input type="text" id="playerNameInput" name="playerNameInput" placeholder="Ej: John Doe" required>
+                <p id="nameError" class="error-message"></p>
             </div>
-            <ul id="listaRanking">
+            <button type="button" class="start-game-button" id="startGameButton">Comenzar Partida</button>
+        </div>
+    </div>
+
+    <div id="difficultyModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Seleccionar Dificultad</h2>
+            <div class="difficulty-options">
+                <button class="difficulty-option-button" data-difficulty="easy">Fácil (8x8, 10 minas)</button>
+                <button class="difficulty-option-button" data-difficulty="medium">Medio (12x12, 25 minas)</button>
+                <button class="difficulty-option-button" data-difficulty="hard">Difícil (16x16, 40 minas)</button>
+                <button class="close-modal" id="closeDifficultyModal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2 id="gameOverMessage"></h2>
+            <button class="close-modal" id="closeGameOverModal">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="rankingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Ranking de Partidas</h2>
+            <div class="ranking-controls">
+                <button id="sortByScore">Ordenar por Puntaje</button>
+                <button id="sortByDate">Ordenar por Fecha</button>
+            </div>
+            <ul id="rankingList">
                 <!-- Los elementos del ranking se insertarán aquí -->
             </ul>
-            <button class="cerrar-modal" id="cerrarModalRanking">Cerrar</button>
+            <button class="close-modal" id="closeRankingModal">Cerrar</button>
         </div>
     </div>
 
-    <!-- Cargar scripts en el orden correcto -->
+    <!-- Load scripts in the correct order to maintain the theme -->
     <script src="js/utils.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/ui.js"></script>

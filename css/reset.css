@@ -1,5 +1,5 @@
 /* css/reset.css */
-/* Reset básico para normalizar estilos entre navegadores */
+/* Basic reset to normalize styles across browsers */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -51,7 +51,6 @@ table {
     border-spacing: 0;
 }
 
-/* Estilos adicionales para elementos interactivos */
 button {
     background: none;
     border: none;

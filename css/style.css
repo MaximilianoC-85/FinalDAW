@@ -1,594 +1,609 @@
-/* Variables de color para temas */
+/* Color variables for themes */
 :root {
-    --color-fondo-claro: #f0f0f0;
-    --color-texto-claro: #333;
-    --color-borde-claro: #ccc;
-    --color-celda-claro: #e0e0e0;
-    --color-celda-revelada-claro: #d0d0d0;
-    --color-mina-claro: #ff4d4d;
-    --color-bandera-claro: #ffcc00;
-    --color-boton-claro: #007bff;
-    --color-texto-boton-claro: #fff;
+    --light-background-color: #f0f0f0;
+    --light-text-color: #333;
+    --light-border-color: #ccc;
+    --light-cell-color: #e0e0e0;
+    --light-revealed-cell-color: #d0d0d0;
+    --light-mine-color: #ff4d4d;
+    --light-flag-color: #ffcc00;
+    --light-button-color: #007bff;
+    --light-button-text-color: #fff;
 
-    --color-fondo-oscuro: #333;
-    --color-texto-oscuro: #f0f0f0;
-    --color-borde-oscuro: #555;
-    --color-celda-oscuro: #444;
-    --color-celda-revelada-oscuro: #222;
-    --color-mina-oscuro: #cc0000;
-    --color-bandera-oscuro: #b38f00;
-    --color-boton-oscuro: #0056b3;
-    --color-texto-boton-oscuro: #fff;
+    --dark-background-color: #333;
+    --dark-text-color: #f0f0f0;
+    --dark-border-color: #555;
+    --dark-cell-color: #444;
+    --dark-revealed-cell-color: #222;
+    --dark-mine-color: #cc0000;
+    --dark-flag-color: #b38f00;
+    --dark-button-color: #0056b3;
+    --dark-button-text-color: #fff;
 }
 
-/* Tema por defecto (claro) */
+/* Default theme (light) */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--color-fondo-claro);
-    color: var(--color-texto-claro);
+    background-color: var(--light-background-color);
+    color: var(--light-text-color);
+    transition: background-color 0.3s, color 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     margin: 0;
-    transition: background-color 0.3s, color 0.3s;
-    overflow: hidden;
-    /* Evita el scroll si el contenido es más grande */
 }
 
-/* Tema oscuro */
-body.modo-oscuro {
-    background-color: var(--color-fondo-oscuro);
-    color: var(--color-texto-oscuro);
+/* Dark theme */
+body.dark-mode {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
 }
 
-.contenedor-principal {
+.main-container {
+    background-color: var(--light-background-color);
+    border: 1px solid var(--light-border-color);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    border: 8px solid var(--color-borde-claro);
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    padding: 20px;
     align-items: center;
-    max-width: 90%;
-    width: 600px;
-    /* Ancho máximo para el contenedor principal */
-    box-sizing: border-box;
+    gap: 20px;
+    width: 90%;
+    max-width: 600px;
 }
 
-body.modo-oscuro .contenedor-principal {
-    background-color: #222;
-    border-color: var(--color-borde-oscuro);
+body.dark-mode .main-container {
+    background-color: var(--dark-background-color);
+    border-color: var(--dark-border-color);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
-.encabezado-juego {
+.game-header,
+.game-footer {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--color-borde-claro);
-    margin-bottom: 20px;
 }
 
-body.modo-oscuro .encabezado-juego {
-    border-color: var(--color-borde-oscuro);
+.game-header {
+    border-bottom: 2px solid var(--light-border-color);
+    padding-bottom: 10px;
 }
 
-.contador-minas,
-.temporizador {
-    font-size: 2em;
-    font-weight: bold;
+body.dark-mode .game-header {
+    border-bottom-color: var(--dark-border-color);
+}
+
+.mines-counter,
+.timer {
     background-color: #000;
-    color: #ff0000;
+    color: #00ff00;
+    /* Neon green for display */
+    font-family: 'monospace', sans-serif;
+    font-size: 2.5em;
     padding: 5px 10px;
-    border-radius: 8px;
+    border-radius: 5px;
     min-width: 80px;
     text-align: center;
 }
 
-.boton-reiniciar {
-    font-size: 2.5em;
-    background-color: #f0f0f0;
-    border: 3px solid #999;
+.restart-button {
+    background-color: #fff;
+    border: 2px solid #333;
     border-radius: 50%;
     width: 60px;
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-size: 1.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-body.modo-oscuro .boton-reiniciar {
+body.dark-mode .restart-button {
     background-color: #555;
-    border-color: #888;
+    border-color: #f0f0f0;
 }
 
-.boton-reiniciar:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.restart-button:hover {
+    transform: scale(1.1);
+    background-color: #eee;
 }
 
-.area-juego {
+body.dark-mode .restart-button:hover {
+    background-color: #666;
+}
+
+.restart-button img {
+    width: 40px;
+    height: 40px;
+}
+
+.game-area {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
 }
 
-.tablero-juego {
+.game-board {
     display: grid;
-    border: 2px solid var(--color-borde-claro);
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: var(--color-celda-claro);
+    gap: 2px;
+    border-radius: 5px;
 }
 
-body.modo-oscuro .tablero-juego {
-    border-color: var(--color-borde-oscuro);
-    background-color: var(--color-celda-oscuro);
+.board-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 2px;
+    border: 2px solid var(--light-border-color);
+    border-radius: 5px;
+    background-color: var(--light-border-color);
 }
 
-.celda {
-    width: 40px;
-    /* Tamaño por defecto de la celda */
-    height: 40px;
-    background-color: var(--color-celda-claro);
-    border: 1px solid var(--color-borde-claro);
+body.dark-mode .board-scroll {
+    border-color: var(--dark-border-color);
+    background-color: var(--dark-border-color);
+}
+
+.cell {
+    width: 35px;
+    height: 35px;
+    background-color: var(--light-cell-color);
+    border: 1px solid var(--light-border-color);
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5em;
     font-weight: bold;
-    cursor: pointer;
-    user-select: none;
+    color: var(--light-text-color);
     transition: background-color 0.1s;
+    user-select: none;
+    border-radius: 3px;
 }
 
-body.modo-oscuro .celda {
-    background-color: var(--color-celda-oscuro);
-    border-color: var(--color-borde-oscuro);
+body.dark-mode .cell {
+    background-color: var(--dark-cell-color);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-color);
 }
 
-.celda:hover:not(.revelada):not(.bandera) {
-    background-color: #c0c0c0;
+.cell:hover:not(.revealed) {
+    background-color: #dcdcdc;
 }
 
-body.modo-oscuro .celda:hover:not(.revelada):not(.bandera) {
-    background-color: #666;
+body.dark-mode .cell:hover:not(.revealed) {
+    background-color: #555;
 }
 
-.celda.revelada {
-    background-color: var(--color-celda-revelada-claro);
+.cell.revealed {
+    background-color: var(--light-revealed-cell-color);
     cursor: default;
+    border: 1px solid #999;
 }
 
-body.modo-oscuro .celda.revelada {
-    background-color: var(--color-celda-revelada-oscuro);
+body.dark-mode .cell.revealed {
+    background-color: var(--dark-revealed-cell-color);
+    border-color: #333;
 }
 
-.celda.mina {
-    background-color: var(--color-mina-claro);
+.cell.revealed.mine {
+    background-color: var(--light-mine-color);
     color: #fff;
 }
 
-body.modo-oscuro .celda.mina {
-    background-color: var(--color-mina-oscuro);
+body.dark-mode .cell.revealed.mine {
+    background-color: var(--dark-mine-color);
 }
 
-.celda.bandera {
-    background-color: var(--color-bandera-claro);
+.cell.flag {
+    background-color: var(--light-flag-color);
     color: #fff;
 }
 
-body.modo-oscuro .celda.bandera {
-    background-color: var(--color-bandera-oscuro);
+body.dark-mode .cell.flag {
+    background-color: var(--dark-flag-color);
 }
 
-/* Colores para los números de minas adyacentes */
-.celda.num-1 {
+.cell.question {
+    background-color: #fff;
+    color: #333;
+}
+
+body.dark-mode .cell.question {
+    background-color: #aaa;
+    color: #fff;
+}
+
+/* Colors for numbers based on number of adjacent mines */
+.cell.mines-1 {
     color: #0000ff;
 }
 
-/* Azul */
-.celda.num-2 {
+.cell.mines-2 {
     color: #008000;
 }
 
-/* Verde */
-.celda.num-3 {
+.cell.mines-3 {
     color: #ff0000;
 }
 
-/* Rojo */
-.celda.num-4 {
+.cell.mines-4 {
     color: #000080;
 }
 
-/* Azul oscuro */
-.celda.num-5 {
+.cell.mines-5 {
     color: #800000;
 }
 
-/* Marrón */
-.celda.num-6 {
+.cell.mines-6 {
     color: #008080;
 }
 
-/* Turquesa */
-.celda.num-7 {
+.cell.mines-7 {
     color: #000000;
 }
 
-/* Negro */
-.celda.num-8 {
+.cell.mines-8 {
     color: #808080;
 }
 
-/* Gris */
+body.dark-mode .cell.mines-1 {
+    color: #33aaff;
+}
 
-.footer-juego {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+body.dark-mode .cell.mines-2 {
+    color: #33cc33;
+}
+
+body.dark-mode .cell.mines-3 {
+    color: #ff6666;
+}
+
+body.dark-mode .cell.mines-4 {
+    color: #6666ff;
+}
+
+body.dark-mode .cell.mines-5 {
+    color: #ff9999;
+}
+
+body.dark-mode .cell.mines-6 {
+    color: #66cccc;
+}
+
+body.dark-mode .cell.mines-7 {
+    color: #ffffff;
+}
+
+body.dark-mode .cell.mines-8 {
+    color: #cccccc;
+}
+
+.game-footer {
+    border-top: 2px solid var(--light-border-color);
+    padding-top: 10px;
+}
+
+body.dark-mode .game-footer {
+    border-top-color: var(--dark-border-color);
+}
+
+.contact-header {
     width: 100%;
-    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--light-border-color);
+    padding-bottom: 10px;
 }
 
-.boton-tema,
-.boton-dificultad,
-.boton-ranking,
-.enlace-contacto,
-.enlace-github,
-.enlace-volver {
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    background-color: var(--color-boton-claro);
-    color: var(--color-texto-boton-claro);
-    font-size: 1em;
+body.dark-mode .contact-header {
+    border-bottom-color: var(--dark-border-color);
+}
+
+.contact-header h1 {
+    font-size: 2em;
     font-weight: bold;
-    transition: background-color 0.2s, transform 0.1s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-area {
+    width: 100%;
+    max-width: 500px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid var(--light-border-color);
+    border-radius: 5px;
+    background-color: var(--light-revealed-cell-color);
+    color: var(--light-text-color);
+    font-size: 1em;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    border-color: var(--dark-border-color);
+    background-color: var(--dark-cell-color);
+    color: var(--dark-text-color);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--light-button-color);
+    box-shadow: 0 0 5px var(--light-button-color);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: var(--dark-button-color);
+    box-shadow: 0 0 5px var(--dark-button-color);
+}
+
+.error-message {
+    color: var(--light-mine-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+    height: 1.2em;
+    /* Prevent layout shift */
+}
+
+body.dark-mode .error-message {
+    color: var(--dark-mine-color);
+}
+
+.theme-button,
+.difficulty-button,
+.ranking-button,
+.submit-button,
+.back-link,
+.start-game-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    text-decoration: none;
     text-align: center;
-    min-width: 120px;
+    color: var(--light-button-text-color);
+    background-color: var(--light-button-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-body.modo-oscuro .boton-tema,
-body.modo-oscuro .boton-dificultad,
-body.modo-oscuro .boton-ranking,
-body.modo-oscuro .enlace-contacto,
-body.modo-oscuro .enlace-github {
-    background-color: var(--color-boton-oscuro);
+body.dark-mode .theme-button,
+body.dark-mode .difficulty-button,
+body.dark-mode .ranking-button,
+body.dark-mode .submit-button,
+body.dark-mode .back-link,
+body.dark-mode .start-game-button {
+    background-color: var(--dark-button-color);
+    color: var(--dark-button-text-color);
 }
 
-.boton-tema:hover,
-.boton-dificultad:hover,
-.boton-ranking:hover,
-.enlace-contacto:hover,
-.enlace-github:hover {
-    background-color: #0056b3;
+.theme-button:hover,
+.difficulty-button:hover,
+.ranking-button:hover,
+.submit-button:hover,
+.back-link:hover,
+.start-game-button:hover {
     transform: translateY(-2px);
+    background-color: #0056b3;
 }
 
-body.modo-oscuro .boton-tema:hover,
-body.modo-oscuro .boton-dificultad:hover,
-body.modo-oscuro .boton-ranking:hover,
-body.modo-oscuro .enlace-contacto:hover,
-body.modo-oscuro .enlace-github:hover {
+body.dark-mode .theme-button:hover,
+body.dark-mode .difficulty-button:hover,
+body.dark-mode .ranking-button:hover,
+body.dark-mode .submit-button:hover,
+body.dark-mode .back-link:hover,
+body.dark-mode .start-game-button:hover {
     background-color: #003d80;
 }
 
-/* Modales */
+/* Styles for modals */
 .modal {
+    display: none;
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
-.contenido-modal {
-    background-color: #fff;
+.modal-content {
+    background-color: var(--light-background-color);
     padding: 30px;
-    border-radius: 15px;
-    text-align: center;
+    border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
+    text-align: center;
     width: 90%;
-    box-sizing: border-box;
-    color: var(--color-texto-claro);
-}
-
-body.modo-oscuro .contenido-modal {
-    background-color: #333;
-    color: var(--color-texto-oscuro);
-}
-
-.contenido-modal h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.contenido-modal input[type="text"],
-.contenido-modal input[type="email"],
-.contenido-modal textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--color-borde-claro);
-    border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    color: var(--color-texto-claro);
-}
-
-body.modo-oscuro .contenido-modal input,
-body.modo-oscuro .contenido-modal textarea {
-    border-color: var(--color-borde-oscuro);
-    background-color: #555;
-    color: var(--color-texto-oscuro);
-}
-
-.contenido-modal button {
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 8px;
-    background-color: var(--color-boton-claro);
-    color: var(--color-texto-boton-claro);
-    font-size: 1em;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-body.modo-oscuro .contenido-modal button {
-    background-color: var(--color-boton-oscuro);
-}
-
-.contenido-modal button:hover {
-    background-color: #0056b3;
-}
-
-body.modo-oscuro .contenido-modal button:hover {
-    background-color: #003d80;
-}
-
-.mensaje-error {
-    color: #ff0000;
-    font-size: 0.9em;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.lista-ranking {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid var(--color-borde-claro);
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-body.modo-oscuro .lista-ranking {
-    border-color: var(--color-borde-oscuro);
-    background-color: #444;
-}
-
-.lista-ranking li {
-    padding: 12px 10px;
-    border-bottom: 1px solid var(--color-borde-claro);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-body.modo-oscuro .lista-ranking li {
-    border-color: var(--color-borde-oscuro);
-}
-
-.lista-ranking li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.controles-ranking {
-    margin-bottom: 15px;
-}
-
-/* Estilos para la página de contacto */
-.encabezado-contacto {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--color-borde-claro);
-    margin-bottom: 20px;
-}
-
-body.modo-oscuro .encabezado-contacto {
-    border-color: var(--color-borde-oscuro);
-}
-
-.encabezado-contacto h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-}
-
-.enlace-volver {
-    padding: 8px 15px;
-    border-radius: 5px;
-    background-color: var(--color-boton-claro);
-    color: var(--color-texto-boton-claro);
-    font-size: 0.9em;
-    transition: background-color 0.2s;
-}
-
-body.modo-oscuro .enlace-volver {
-    background-color: var(--color-boton-oscuro);
-}
-
-.enlace-volver:hover {
-    background-color: #0056b3;
-}
-
-body.modo-oscuro .enlace-volver:hover {
-    background-color: #003d80;
-}
-
-.formulario-contacto {
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
+    gap: 20px;
 }
 
-body.modo-oscuro .formulario-contacto {
-    background-color: #444;
+body.dark-mode .modal-content {
+    background-color: var(--dark-background-color);
 }
 
-.grupo-formulario {
-    margin-bottom: 15px;
-}
-
-.grupo-formulario label {
-    display: block;
-    margin-bottom: 5px;
+.modal-content h2 {
+    font-size: 2em;
     font-weight: bold;
 }
 
-.grupo-formulario input,
-.grupo-formulario textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--color-borde-claro);
+.close-modal {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
     border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    color: var(--color-texto-claro);
+    transition: background-color 0.3s;
 }
 
-body.modo-oscuro .grupo-formulario input,
-body.modo-oscuro .grupo-formulario textarea {
-    border-color: var(--color-borde-oscuro);
-    background-color: #555;
-    color: var(--color-texto-oscuro);
+.close-modal:hover {
+    background-color: #d32f2f;
 }
 
-.boton-enviar {
-    padding: 12px 25px;
+.difficulty-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.difficulty-option-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
     border-radius: 8px;
-    background-color: var(--color-boton-claro);
-    color: var(--color-texto-boton-claro);
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    align-self: flex-end;
-    /* Alinea el botón a la derecha */
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-body.modo-oscuro .boton-enviar {
-    background-color: var(--color-boton-oscuro);
+.difficulty-option-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
 }
 
-.boton-enviar:hover {
-    background-color: #0056b3;
+.ranking-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-body.modo-oscuro .boton-enviar:hover {
-    background-color: #003d80;
+.ranking-controls button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
+.ranking-controls button:hover {
+    background-color: #0b7dda;
+}
 
-/* Media Queries para responsividad */
+#rankingList {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#rankingList li {
+    background-color: var(--light-revealed-cell-color);
+    border: 1px solid var(--light-border-color);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+body.dark-mode #rankingList li {
+    background-color: var(--dark-cell-color);
+    border-color: var(--dark-border-color);
+}
+
+/* Contact page styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Media Queries for responsiveness */
 @media (max-width: 768px) {
-    .contenedor-principal {
+    .main-container {
         padding: 15px;
         width: 95%;
     }
 
-    .encabezado-juego {
+    .game-header {
         flex-direction: column;
         gap: 10px;
     }
 
-    .boton-reiniciar {
+    .restart-button {
         width: 50px;
         height: 50px;
         font-size: 2em;
     }
 
-    .contador-minas,
-    .temporizador {
+    .mines-counter,
+    .timer {
         font-size: 1.8em;
         min-width: 70px;
     }
 
-    .celda {
+    .cell {
         width: 30px;
         height: 30px;
         font-size: 1.2em;
     }
 
-    .footer-juego {
+    .game-footer {
         flex-direction: column;
         gap: 10px;
     }
 
-    .boton-tema,
-    .boton-dificultad,
-    .boton-ranking,
-    .enlace-contacto,
-    .enlace-github {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .contenido-modal {
+    .modal-content {
         padding: 20px;
     }
 
-    .contenido-modal h2 {
-        font-size: 1.8em;
-    }
-}
-
-@media (max-width: 480px) {
-    .celda {
-        width: 25px;
-        height: 25px;
-        font-size: 1em;
+    .difficulty-option-button {
+        padding: 10px 15px;
     }
 
-    .contador-minas,
-    .temporizador {
-        font-size: 1.5em;
-        min-width: 60px;
+    .back-link {
+        margin: 10px 15px;
+
     }
 
-    .boton-reiniciar {
-        width: 45px;
-        height: 45px;
-        font-size: 1.8em;
+    .theme-button {
+        margin: 10px 15px;
+
     }
 }
