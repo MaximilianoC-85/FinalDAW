@@ -27,18 +27,18 @@ function getRandomNumber(min, max) {
 
 // Ordena el ranking por puntaje (descendente) o fecha (más reciente primero)
 function sortRanking(ranking, sortBy) {
-    var rankingCopia = ranking.slice(); // Crear una copia para no modificar el original
+    var RankingCopy = ranking.slice();
 
-    if (sortBy === 'puntaje') {
-        rankingCopia.sort(function(a, b) {
-            return b.puntaje - a.puntaje; // Orden descendente por puntaje
+    if (sortBy === 'score') {
+        RankingCopy.sort(function(a, b) {
+            return b.score - a.score;
         });
-    } else if (sortBy === 'fecha') {
-        rankingCopia.sort(function(a, b) {
-            return new Date(b.fecha).getTime() - new Date(a.fecha).getTime(); // Orden descendente por fecha
+    } else if (sortBy === 'date') {
+        RankingCopy.sort(function(a, b) {
+            return new Date(b.date).getTime() - new Date(a.date).getTime(); // Orden descendente por fecha
         });
     }
-    return rankingCopia;
+    return RankingCopy;
 }
 
 // Exponer funciones públicas
